@@ -1,5 +1,7 @@
 const expressAsyncHandler  = require("express-async-handler");
 const express = require("express");
+const calCumScore = require("../logics/calCumScore");
+
 
 
 
@@ -9,7 +11,15 @@ let dataCaptureRoute = express.Router();
 dataCaptureRoute.post(
     '/senddata',
     expressAsyncHandler( async (req,res)=>{
-        const { userID,roundNo } = req.body;
-        const userExist = await User.findOne({email:email})
+        
+        console.log(calCumScore(2,3));
+        res.json({
+            userid:23,
+            CumlativeScore: 45,
+            lastRound: 56,
+            lastSliderValue: 78
+        })
     })
 );
+
+module.exports = dataCaptureRoute;
