@@ -1,29 +1,22 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
 import * as d3 from 'd3';
 
-function D3Chart(props) {
-  // console.log(data)
-  var dataRed = props.dataRed
-  var dataGreen = props.dataGreen
-  // var color = '';
-  // if ( dataset.length < 50 ){
-  //   color = 'red'
-  //   top = dataset
-  // } else {
-  //   color = 'green'
-  //   bottom = dataset
-  // }
-  // console.log(top, bottom);
-  const margin = { top: 20, right: 0, bottom: 0, left: 30 }
-  const width = d3.select('.area').node().getBoundingClientRect().width - margin.left - margin.right
-  const height = 450 - margin.top - margin.bottom
-console.log(width)
-  const svg = d3.select('.chart') // select svg
+function D3Chart({redData, greenData}) {
+
+  useEffect(() => {
+    var dataRed = redData
+    var dataGreen = greenData
+    const margin = { top: 20, right: 0, bottom: 0, left: 20 }
+    const width = 450 - margin.left - margin.right
+    const height = 450 - margin.top - margin.bottom
+    const svg = d3.selectAll('.area svg') // select svg
     // .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom )
     .style('border', '2px solid black')
     .style('background', 'black')
+
+    // console.log(svg);
   svg.selectAll("circle").remove() // remove all the existing nodes from svg if any
 
   const g = svg.append('g')
@@ -53,6 +46,8 @@ console.log(width)
 
   circleRed.remove()
   circleGreen.remove()
+
+  }, [redData, greenData])
 
   return (
     <div className='area'>
