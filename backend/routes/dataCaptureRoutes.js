@@ -1,7 +1,7 @@
 const expressAsyncHandler  = require("express-async-handler");
 const express = require("express");
 const calCumScore = require("../logics/calCumScore");
-
+const RoundwiseData = require("../models/roundwiseData");
 
 
 
@@ -11,7 +11,7 @@ let dataCaptureRoute = express.Router();
 dataCaptureRoute.post(
     '/senddata',
     expressAsyncHandler( async (req,res)=>{
-        
+            
         console.log(calCumScore(2,3));
         res.json({
             userid:23,

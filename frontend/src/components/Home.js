@@ -1,4 +1,5 @@
 import { Box, Button, Input, Slider } from '@material-ui/core'
+import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 import D3Chart from './D3Chart'
 import { data } from './Data'
@@ -7,16 +8,36 @@ function Home() {
     const [sliderVal, setSliderVal] = useState(50)
 
     useEffect(()=>{
-        localStorage.setItem('time', new Date());
-        console.log('use effect');
+        localStorage.setItem('startTime', new Date());
+        //console.log('use effect');
     }, [])
 
+    // function will change response according to response from the server
+    const handleServerResponse = (response)=>{
+        localStorage.setItem('startTime', new Date());
+        console.log(response);
+    }
+
+    const handleServerError = (error) =>{
+
+    }
+
+    const sendToServer = (roundData) =>{
+        axios.post('/senddata', roundData)
+        .then(response => handleServerResponse(response))
+        .catch(error => handleServerError(error))
+    }
 
 
     const handleClick = (e) => {
-        var time = (new Date - new Date(localStorage.getItem('time')) )/1000;
-        console.log(time);
-        localStorage.setItem('time', new Date());
+        var screenTime = (new Date - new Date(localStorage.getItem('startTime')) )/1000;
+        console.log(screenTime); 
+        sendToServer({
+            userId:23,
+            roundNo: 23,
+            screenTime: screenTime,
+            sliderValue:sliderVal
+        });
     }
     return (
 
