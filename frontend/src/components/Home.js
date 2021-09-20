@@ -6,14 +6,17 @@ import { data } from './Data'
 function Home() {
     const [sliderVal, setSliderVal] = useState(50)
 
-    // useEffect(()=>{
-    //     console.log('use effect');
-    // }, [])
+    useEffect(()=>{
+        localStorage.setItem('time', new Date());
+        console.log('use effect');
+    }, [])
 
 
 
-    const handleChange = () => {
-
+    const handleClick = (e) => {
+        var time = (new Date - new Date(localStorage.getItem('time')) )/1000;
+        console.log(time);
+        localStorage.setItem('time', new Date());
     }
     return (
 
@@ -23,7 +26,7 @@ function Home() {
                 <input style={{ width: '800px' }} type="range" name="slider" id="slider" value={sliderVal} min="0" max="100" step="0.1" onChange={(e) => setSliderVal(e.target.value)} />
             </Box>
             <Box height={50}>
-                <Button variant='contained' onClick={(e) => handleChange(e)} >Next</Button>
+                <Button variant='contained' onClick={(e) => handleClick(e)} >Next</Button>
             </Box>
 
             <Box>
