@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const logger = require('../logger');
 const config = require('./config')();
 
 
@@ -10,7 +11,7 @@ const dbConnect = ()=>{
         useUnifiedTopology:true,
         useNewUrlParser:true,
     })
-    .then(() => console.log(`${new Date()} -- Database Connected`))
+    .then(() => logger.info(`${new Date()} -- Database Connected`))
     .catch(err => console.error(err));
 }
 
