@@ -6,16 +6,16 @@ function D3Chart({redData, greenData}) {
   useEffect(() => {
     var dataRed = redData
     var dataGreen = greenData
-    const margin = { top: 20, right: 0, bottom: 0, left: 20 }
-    const width = 450 - margin.left - margin.right
-    const height = 450 - margin.top - margin.bottom
+    const margin = { top: 5, right: 0, bottom: 0, left: 5 }
+    const width = d3.select('.area').node().getBoundingClientRect().width - margin.left - margin.right
+    const height = 420 - margin.top - margin.bottom
     const svg = d3.selectAll('.area svg') // select svg
     // .append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom )
     .style('border', '2px solid black')
     .style('background', 'black')
-
+console.log(width);
     // console.log(svg);
   svg.selectAll("circle").remove() // remove all the existing nodes from svg if any
 
