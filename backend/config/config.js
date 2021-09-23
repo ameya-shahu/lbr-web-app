@@ -10,7 +10,9 @@ module.exports = function(){
                 },
                 pm2:{
                     id: "dev"
-                }
+                },
+                
+                noOfRound: process.env.NO_OF_ROUND
             };
 
         case 'production':
@@ -23,7 +25,10 @@ module.exports = function(){
                 },
                 pm2:{
                     id: process.env.pm_id || 1
-                }
+                },
+
+                noOfRound: process.env.NO_OF_ROUND,
+
             };
 
         default:

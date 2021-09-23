@@ -25,7 +25,7 @@ const RoundwiseDataSchema = new mongoose.Schema({
         type: Number,
         required: [true,'cumlativeScore is not provided'],
     },
-    changedInCumlative:{
+    changedInScore:{
         type: Number,
         required: [true, 'ChnagedInCumlative field is missing']
     },
@@ -34,7 +34,7 @@ const RoundwiseDataSchema = new mongoose.Schema({
         required: [true, 'ring color is not mentioned']
     }
 });
-RoundwiseDataSchema.index({userId:1, roundNo:1}, {unique:true})
+
 
 const RoundwiseData = mongoose.model("RoundwiseData",RoundwiseDataSchema);
 
