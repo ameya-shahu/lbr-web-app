@@ -11,7 +11,6 @@ let dataCaptureRoute = express.Router();
 dataCaptureRoute.post(
     '/senddata',
     expressAsyncHandler( async (req,res)=>{
-            
         console.log(calCumScore(2,3));
         res.json({
             userid:23,

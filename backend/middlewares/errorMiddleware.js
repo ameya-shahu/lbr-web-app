@@ -13,7 +13,7 @@ function isJson(str) {
 const errorMiddleware = (err, req, res, next) =>{
     logger.error("---------------------- new request error -------------------------------")
     logger.error(JSON.stringify(req.body))
-    logger.error(err.name + err.message);
+    logger.error(err.name+" --- " + err.message);
     if(err.name==="ValidationError"){
         let errors = {
             "errors":{}
@@ -30,6 +30,11 @@ const errorMiddleware = (err, req, res, next) =>{
         res.json({
             "errors": isJson(err.message) ? JSON.parse(err.message) : err.message,
         });
+    }else{
+        res.status(500);
+        res.json({
+            [err.name]:err.message
+        })
     }
     logger.error("------------------------ error response --------------------------------");
 };
