@@ -1,0 +1,1 @@
+set NODE_ENV=development&& set DB_USER=dev-db-admin&& set DB_PASSWORD=9M0rM67wBCHw1b9D&& set DB_HOST=cluster0.hd878.mongodb.net&&set DB_DATABASE=lbr-web-app&& set PORT=5000&& node backend\server.js

@@ -5,10 +5,11 @@ import { data } from './Data'
 
 function Home() {
     const [sliderVal, setSliderVal] = useState(50)
+    const userInfo = JSON.parse(localStorage.getItem('user'))
+        console.log(userInfo);
 
     useEffect(() => {
         localStorage.setItem('startTime', new Date());
-        //console.log('use effect');
     }, [])
 
     // function will change response according to response from the server
@@ -44,7 +45,7 @@ function Home() {
             <div className='row justify-content-center' style={{ backgroundColor: '#232323' }}>
                 <div className='col col-md-6 text-center mt-2'>
                     <button type="button" className="btn btn-secondary fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Cumulative Score" disabled>
-                        Cumulative Score: 1.22
+                        Cumulative Score: 
                     </button>
                 </div>
                 {/* <div className='col col-md-4 text-center'>

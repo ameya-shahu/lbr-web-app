@@ -15,7 +15,7 @@ function D3Chart({redData, greenData}) {
     .attr('height', height + margin.top + margin.bottom )
     .style('border', '2px solid black')
     .style('background', 'black')
-console.log(width);
+
     // console.log(svg);
   svg.selectAll("circle").remove() // remove all the existing nodes from svg if any
 
