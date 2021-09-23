@@ -4,12 +4,26 @@ import D3Chart from './D3Chart'
 import { data } from './Data'
 
 function Home() {
-    const [sliderVal, setSliderVal] = useState(50)
-    const userInfo = JSON.parse(localStorage.getItem('user'))
-        console.log(userInfo);
+    const [pageState, setPageState] = useState({
+        cumScore: 0.0,
+        cScore: 0.0,
+        sliderVal: 50,
+        ringColor: 'green'
+    })
+
+
+
 
     useEffect(() => {
         localStorage.setItem('startTime', new Date());
+        const data = JSON.parse(localStorage.getItem('user'))
+        // console.log(userInfo);
+        setPageState({
+            sliderVal: data.lastSliderValue,
+            cumScore: data.cumlativeScore,
+            cScore: data.changedInCumlative,
+            ringColor: 'green'
+        })
     }, [])
 
     // function will change response according to response from the server
@@ -36,8 +50,15 @@ function Home() {
             userId: 23,
             roundNo: 23,
             screenTime: screenTime,
-            sliderValue: sliderVal
+            sliderValue: pageState.sliderVal
         });
+    }
+
+    const handleSlider = (e) => {
+        setPageState({
+            ...pageState,
+            sliderVal: e.target.value
+        })
     }
     return (
         <div className='container p-3'>
@@ -45,7 +66,7 @@ function Home() {
             <div className='row justify-content-center' style={{ backgroundColor: '#232323' }}>
                 <div className='col col-md-6 text-center mt-2'>
                     <button type="button" className="btn btn-secondary fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Cumulative Score" disabled>
-                        Cumulative Score: 
+                        Cumulative Score: {pageState.cumScore}
                     </button>
                 </div>
                 {/* <div className='col col-md-4 text-center'>
@@ -55,7 +76,7 @@ function Home() {
                 </div> */}
                 <div className='col col-md-6 text-center mt-2'>
                     <button type="button" className="btn btn-secondary fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Change in score" disabled>
-                        Change in score: XX
+                        Change in score: {pageState.cScore}
                     </button>
                 </div>
             </div>
@@ -73,7 +94,7 @@ function Home() {
                                 </div>
                             {/* </div> */}
                         </div>
-                        <div className='col col-md-6 mt-0  text-center text-success fw-bold' style={{ fontSize: '66px'}}>
+                        <div className='col col-md-6 mt-0  text-center fw-bold' style={{ fontSize: '66px', color: pageState.ringColor}}>
                             0
                         </div>
                         <div className='col col-md mt-4 text-center'>
@@ -97,11 +118,11 @@ function Home() {
                                 type="range"
                                 name="slider"
                                 id="slider"
-                                value={sliderVal}
+                                value={pageState.sliderVal}
                                 min="0"
                                 max="100"
                                 step="0.1"
-                                onChange={(e) => setSliderVal(e.target.value)}
+                                onChange={(e) => handleSlider(e)}
                             />
                         </div>
                     </div>
@@ -111,7 +132,7 @@ function Home() {
                         </div>
                         <div className='col text-center'>
                             <button type="button" className="btn btn-secondary fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Slider Score">
-                                {sliderVal}
+                                {pageState.sliderVal}
                             </button>
                         </div>
                         <div className='col text-end text-success h4'>
@@ -125,9 +146,9 @@ function Home() {
                     <div className='col d-flex justify-content-center'>
                         <div className='card' style={{ width: '30rem', border: '0px' }}>
                             <D3Chart
-                                sliderVal={sliderVal}
-                                redData={data.slice(0, (sliderVal) * 10)}
-                                greenData={data.slice((sliderVal) * 10, 1000)}
+                                sliderVal={pageState.sliderVal}
+                                redData={data.slice(0, (pageState.sliderVal) * 10)}
+                                greenData={data.slice((pageState.sliderVal) * 10, 1000)}
                             />
                         </div>
                     </div>
