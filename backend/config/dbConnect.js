@@ -11,7 +11,7 @@ const dbConnect = ()=>{
         useUnifiedTopology:true,
         useNewUrlParser:true,
     })
-    .then(() => logger.info(`${new Date()} -- Database Connected`))
+    .then(() => logger.info(`Database Connected`))
     .catch(err => console.error(err));
 }
 

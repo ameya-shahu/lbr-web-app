@@ -119,4 +119,6 @@ dist
 .pnp.*
 
 # batch file to run project
-run.bat
+dev.bat
+prod.bat
+prod-stop.bat

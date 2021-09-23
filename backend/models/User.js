@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
     userId:{
         type: Number,
         required:[true,"user id is missing"],
+        index: true
     },
     sessionId: {
         type: Number,
@@ -11,6 +12,9 @@ const UserSchema = new mongoose.Schema({
     },
     enterTime:{
         type: String
+    },
+    lastCompletedRound:{
+        type: Number
     }
 });
 

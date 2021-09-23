@@ -7,6 +7,9 @@ module.exports = function(){
                     password: process.env.DB_PASSWORD,
                     host: process.env.DB_HOST,
                     database: process.env.DB_DATABASE
+                },
+                pm2:{
+                    id: "dev"
                 }
             };
 
@@ -17,6 +20,9 @@ module.exports = function(){
                     password: process.env.DB_PASSWORD,
                     host: process.env.DB_HOST,
                     database: process.env.DB_DATABASE
+                },
+                pm2:{
+                    id: process.env.pm_id || 1
                 }
             };
 

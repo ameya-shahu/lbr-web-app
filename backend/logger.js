@@ -1,5 +1,7 @@
-const winston = require('winston')
+const winston = require('winston');
+const config = require('./config/config')();
 const { splat, combine, timestamp, printf } = winston.format;
+
 
 // meta param is ensured by splat()
 const myFormat = printf(({ timestamp, level, message, meta }) => {
@@ -9,7 +11,7 @@ const myFormat = printf(({ timestamp, level, message, meta }) => {
 const options = {
   info: {
     level: 'info',
-    filename: './logs/app.log',
+    filename: `./logs/app-${config.pm2.id}.log`,
     handleExceptions: true,
     json: false,
     maxsize: 5242880, // 5MB
@@ -18,7 +20,7 @@ const options = {
   },
   error:{
     level: 'error',
-    filename: './logs/error.log',
+    filename: `./logs/error-${config.pm2.id}.log`,
     handleExceptions: true,
     json: false,
     maxsize: 5242880, // 5MB

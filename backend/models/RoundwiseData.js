@@ -17,12 +17,23 @@ const RoundwiseDataSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'slider value is missing']
     },
+    hiddenProb:{
+        type: Number,
+        required: [true, 'Hidden probability is missing']
+    },
     cumlativeScore:{
         type: Number,
         required: [true,'cumlativeScore is not provided'],
+    },
+    changedInCumlative:{
+        type: Number,
+        required: [true, 'ChnagedInCumlative field is missing']
+    },
+    ringColor:{
+        
     }
 });
-
+RoundwiseDataSchema.index({userId:1, roundNo:1}, {unique:true})
 
 const RoundwiseData = mongoose.model("RoundwiseData",RoundwiseDataSchema);
 
