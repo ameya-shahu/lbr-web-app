@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         required: [true, "session id is missing"],
     },
+    day: {
+        type: Number,
+        required: [true, 'Enter Day No'],
+    },
     enterTime:{
         type: String
     },

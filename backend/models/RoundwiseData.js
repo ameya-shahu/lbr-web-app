@@ -30,7 +30,8 @@ const RoundwiseDataSchema = new mongoose.Schema({
         required: [true, 'ChnagedInCumlative field is missing']
     },
     ringColor:{
-        
+        type: Number,
+        required: [true, 'ring color is not mentioned']
     }
 });
 RoundwiseDataSchema.index({userId:1, roundNo:1}, {unique:true})

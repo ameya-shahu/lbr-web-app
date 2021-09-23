@@ -5,11 +5,6 @@ const logger = require('../logger');
 const RoundwiseData = require("../models/roundwiseData");
 const getHiddenProbability = require("../logics/hiddenProbability");
 
-
-
-
-
-
 let userRoute = express.Router();
 
 userRoute.post(
@@ -95,8 +90,9 @@ userRoute.post(
                 let newUser = {
                     userId: req.body.userId,
                     sessionId: req.body.sessionId,
+                    day: req.body.day,
                     enterTime: Date(),
-                    lastCompletedRound: 0
+                    lastCompletedRound: 0,
                 }
                 const user = await User.create(newUser);
 
