@@ -33,7 +33,7 @@ console.log(width);
     .attr('r', 3)
     .attr('cx', d => d.x)
     .attr('cy', d => d.y)
-    .attr('stroke', '#FF0000')
+    .attr('stroke', '#66FF00')
     .attr('stroke-width', 1.5)
   circleGreen.enter() // append circles to svg
     .append('circle')
@@ -41,7 +41,7 @@ console.log(width);
     .attr('r', 3)
     .attr('cx', d => d.x)
     .attr('cy', d => d.y)
-    .attr('stroke', '#66FF00')
+    .attr('stroke', '#FF0000')
     .attr('stroke-width', 1.5)
 
   circleRed.remove()
