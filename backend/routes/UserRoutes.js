@@ -4,6 +4,7 @@ const User = require("../models/User");
 const logger = require('../logger');
 const RoundwiseData = require("../models/roundwiseData");
 const getHiddenProbability = require("../logics/hiddenProbability");
+const getDisplayRingColor = require("../logics/displayRingColor");
 
 let userRoute = express.Router();
 
@@ -45,7 +46,8 @@ userRoute.post(
                     lastSliderValue: 50,
                     hiddenProb: hiddenProb,
                     cumlativeScore:0,
-                    changedInCumlative:0
+                    changedInCumlative:0,
+                    ringColor: getDisplayRingColor(hiddenProb),
                 };
 
                 logger.info("Response to client")
@@ -65,9 +67,10 @@ userRoute.post(
                         sessionId: user.sessionId,
                         lastCompletedRound: user.lastCompletedRound,
                         lastSliderValue: lastRoundData.sliderValue,
-                        hiddenProb: getHiddenProbability(lastRoundData.hiddenProb),
+                        hiddenProb: lastRoundData.nextHiddenProb,
                         cumlativeScore: lastRoundData.cumlativeScore,
-                        changedInCumlative: lastRoundData.changedInCumlative
+                        changedInCumlative: lastRoundData.changedInCumlative,
+                        ringColor: lastRoundData.nextRingColor
                     };
 
                     logger.info("response to client");
@@ -108,7 +111,8 @@ userRoute.post(
                     lastSliderValue: 50,
                     hiddenProb: hiddenProb,
                     cumlativeScore:0,
-                    changedInCumlative:0
+                    changedInCumlative:0,
+                    ringColor: getDisplayRingColor(hiddenProb)
                 };
 
                 logger.info("Response to client")

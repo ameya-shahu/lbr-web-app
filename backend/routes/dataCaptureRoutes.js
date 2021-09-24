@@ -7,6 +7,7 @@ const User = require("../models/User");
 const config = require("../config/config")();
 const logger = require('../logger');
 const getHiddenProbability = require("../logics/hiddenProbability");
+const getDisplayRingColor = require("../logics/displayRingColor");
 
 
 
@@ -21,22 +22,31 @@ dataCaptureRoute.post(
         logger.info(`transaction started - /api/data/senddata - userId = ${userId}, roundNo = ${roundNo}`);
 
         /* store data of round in database*/
+
+        /*first calculate hiddenProb,ringColor then used that for cumlativeScore calculation, and store data with previous ring color, also need to add future ring color*/ 
         try{
             var sliderValueInUniform = req.body.sliderValue/100
-            var changedInScore = getChangeInScore(sliderValueInUniform, req.body.ringColor)
-            var cumlativeScore = req.body.CumlativeScore + changedInScore
+            var nextHiddenProb = getHiddenProbability(req.body.hiddenProb);
+            var nextRingColor = getDisplayRingColor(nextHiddenProb);
+            logger.info(`nextHiddenProbability= ${nextHiddenProb}, nextRingColor = ${nextRingColor}`)
 
+            var changedInScore = getChangeInScore(sliderValueInUniform, nextRingColor);
+            logger.info(req.body.CumlativeScore);
+            var cumlativeScore = parseFloat(req.body.CumlativeScore) + changedInScore
             logger.info(`ChangedInScore= ${changedInScore}, cumlativeScore = ${cumlativeScore}`);
 
             var thisRoundData = {
                 userId: req.body.userId,
                 roundNo: req.body.roundNo,
-                screenTime: req.body.screenTime,
-                sliderValue: req.body.sliderValue,
-                hiddenProb: req.body.hiddenProb,
-                cumlativeScore: cumlativeScore,
+                screenTime: req.body.screenTime, 
+                sliderValue: req.body.sliderValue, 
+                currHiddenProb: req.body.hiddenProb, 
+                currRingColor: req.body.ringColor,
+                nextHiddenProb: nextHiddenProb,
+                nextRingColor: nextRingColor,
+                cumlativeScore: cumlativeScore, 
                 changedInScore: changedInScore,
-                ringColor: req.body.ringColor
+                
             }
             const roundData = await RoundwiseData.create(thisRoundData);
             logger.info("New roundData created successfully.")
@@ -83,9 +93,10 @@ dataCaptureRoute.post(
                     sessionId: thisRoundData.sessionId,
                     lastCompletedRound: thisRoundData.roundNo,
                     lastSliderValue: thisRoundData.sliderValue,
-                    hiddenProb: getHiddenProbability(thisRoundData.hiddenProb),
+                    hiddenProb: nextHiddenProb,
                     cumlativeScore: thisRoundData.cumlativeScore,
-                    changedInCumlative: thisRoundData.changedInScore
+                    changedInCumlative: thisRoundData.changedInScore,
+                    ringColor: nextRingColor
                 };
                 res.json(response)
                 logger.info('Response to client');

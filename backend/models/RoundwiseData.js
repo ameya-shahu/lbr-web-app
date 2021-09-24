@@ -17,9 +17,21 @@ const RoundwiseDataSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'slider value is missing']
     },
-    hiddenProb:{
+    currHiddenProb:{
         type: Number,
         required: [true, 'Hidden probability is missing']
+    },
+    currRingColor:{
+        type: Number,
+        required: [true, 'ring color is not mentioned']
+    },
+    nextHiddenProb:{
+        type: Number,
+        required: [true, 'next Hidden probability is missing']
+    },
+    nextRingColor:{
+        type: Number,
+        required: [true, 'ring color is not mentioned']
     },
     cumlativeScore:{
         type: Number,
@@ -29,10 +41,7 @@ const RoundwiseDataSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'ChnagedInCumlative field is missing']
     },
-    ringColor:{
-        type: Number,
-        required: [true, 'ring color is not mentioned']
-    }
+
 });
 
 
