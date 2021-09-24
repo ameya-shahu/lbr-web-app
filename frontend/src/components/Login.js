@@ -12,7 +12,7 @@ function Login() {
         var data = response.data;
 
         if (data.userId == userId) {
-            console.log(userId);
+            // console.log(userId);
             localStorage.setItem('user', JSON.stringify(response.data))
             // console.log(response.data);
             history.push('/home')
