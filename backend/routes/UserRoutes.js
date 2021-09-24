@@ -5,6 +5,7 @@ const logger = require('../logger');
 const RoundwiseData = require("../models/roundwiseData");
 const getHiddenProbability = require("../logics/hiddenProbability");
 const getDisplayRingColor = require("../logics/displayRingColor");
+const config = require("../config/config")();
 
 let userRoute = express.Router();
 
@@ -28,7 +29,7 @@ userRoute.post(
         if (user) {
             /** If user exists check if last round is 1000 or not */
             logger.info(`user has completed ${user.lastCompletedRound} rounds`)
-            if(user.lastCompletedRound==1000){
+            if(user.lastCompletedRound==config.noOfRound){
                 res.status(403);
                 throw new Error(JSON.stringify({
                     "user":"user with same user id already exists and completed with all rounds"

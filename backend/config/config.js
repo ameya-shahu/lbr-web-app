@@ -3,10 +3,7 @@ module.exports = function(){
         case 'development':
             return {
                 db:{
-                    user: process.env.DB_USER,
-                    password: process.env.DB_PASSWORD,
-                    host: process.env.DB_HOST,
-                    database: process.env.DB_DATABASE
+                    URI: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}`,
                 },
                 pm2:{
                     id: "dev"
@@ -18,10 +15,7 @@ module.exports = function(){
         case 'production':
             return {
                 db:{
-                    user: process.env.DB_USER,
-                    password: process.env.DB_PASSWORD,
-                    host: process.env.DB_HOST,
-                    database: process.env.DB_DATABASE
+                    URI: `mongodb://${process.env.DB_HOST}/${config.db.database}`
                 },
                 pm2:{
                     id: process.env.pm_id || 1
