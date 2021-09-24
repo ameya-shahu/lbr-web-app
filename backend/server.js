@@ -39,7 +39,12 @@ app.use(logReqMiddleware);
 
 app.use('/api/data', dataCaptureRoute);
 app.use('/api/user', userRoute);
-app.use('/', indexRoute);
+
+
+//app.use('/', indexRoute);
+
+// Public files
+app.use('/', express.static(__dirname + '/public'));
 
 // errorhandler
 app.use(errorMiddleware);
