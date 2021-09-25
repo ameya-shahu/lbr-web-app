@@ -148,7 +148,7 @@ function Home() {
                             </div>
                             {/* </div> */}
                         </div>
-                        <div className='col mt-0  text-center fw-bold' style={{ fontSize: '66px', color: pageState.ringColor == 0 ? '#66FF00' : 'red' }}>
+                        <div className='col mt-0  text-center fw-bold' style={{ fontSize: '66px', color: pageState.ringColor == 1 ? '#66FF00' : 'red' }}>
                             0
                         </div>
                     </div>
