@@ -15,7 +15,7 @@ module.exports = function(){
         case 'production':
             return {
                 db:{
-                    URI: `mongodb://${process.env.DB_HOST}/${config.db.database}`
+                    URI: `mongodb://${process.env.DB_HOST}/${process.env.DB_DATABASE}`
                 },
                 pm2:{
                     id: process.env.pm_id || 1
