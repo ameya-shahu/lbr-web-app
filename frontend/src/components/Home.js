@@ -60,7 +60,7 @@ function Home() {
             ringColor: response.data.ringColor,
             lastCompletedRound: response.data.lastCompletedRound,
         })
-
+        
         setDisable(false)
     }
 
@@ -81,7 +81,7 @@ function Home() {
     }
 
     const handleClick = (e) => {
-        var screenTime = (new Date - new Date(localStorage.getItem('startTime'))) / 1000;
+        var screenTime = (new Date() - new Date(localStorage.getItem('startTime'))) / 1000;
         console.log(screenTime);
 
 
@@ -193,7 +193,7 @@ function Home() {
                                 onClick={(e) => handleClick(e)}
                                 disabled={disable}
                             >
-                                Next
+                                {disable?"Wait":"Next"}
                             </button>
                         </div>
                     </div>

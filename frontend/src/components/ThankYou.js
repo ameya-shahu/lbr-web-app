@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 function ThankYou() {
 let data = JSON.parse(localStorage.getItem('user'))
