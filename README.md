@@ -10,9 +10,9 @@ This application aims to simulate the discrete adjustment experiment described i
 
 ## Project Structure
 
-- **client**: Contains the frontend React.js application.
-- **server**: Contains the backend Node.js application built with Express.js.
-- **database**: Contains any database related files, configurations, or migrations.
+- **frontend**: Contains the frontend React.js application.
+- **backend**: Contains the backend Node.js application built with Express.js.
+- add .env file with the with paramenters ```DB_HOST```, ```DB_DATABASE```, ```DB_USER```, and ```DB_PASSWORD```. Also, add ```NO_OF_ROUND``` to set number of rounds for experiment.
 
 ## Prerequisites
 
