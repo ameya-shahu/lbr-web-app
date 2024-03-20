@@ -24,7 +24,7 @@ Before running this application, ensure you have the following installed:
 
 ## Installation
 
-1. Clone the repository: `git clone [<repository-url>](https://github.com/ameya-shahu/probability-perception-exp-app.git)`
+1. Clone the repository: `git clone https://github.com/ameya-shahu/probability-perception-exp-app.git`
 2. Navigate to the project directory: `cd probability-perception-exp-app`
 3. Install dependencies for both frontend and backend:
    ```
