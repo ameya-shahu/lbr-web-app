@@ -62,5 +62,3 @@ This project is licensed under the [MIT License](LICENSE).
 Special thanks to the authors of the paper ["A Discrete Adjustment Experiment on Reporting Probabilities"](http://econweb.umd.edu/~stevens/papers/KSW%20Discrete%20Adjustment%20Experiment.pdf) for providing the inspiration and framework for this application.
 
 ---
-
-Feel free to modify and expand upon this README to suit the needs of your project!
